@@ -1,5 +1,11 @@
 <div class="task-list container">
-    <h1 class="title">Lista de Tarefas</h1>
+    <div class="header">
+        <h1 class="title">Lista de Tarefas</h1>
+
+        <a mat-button routerLink="/login">
+            Sair <mat-icon>logout</mat-icon>
+        </a>
+    </div>
     
     <task-card class="task-card" *ngFor="let task of taskList; let i = index" [task]="task" (deleteTask)="onDeleteTask(i)"></task-card>
 
