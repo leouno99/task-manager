@@ -1,1 +1,5 @@
-<p>task-list works!</p>
+<div class="task-list container">
+    <h1 class="title">Lista de Tarefas</h1>
+    
+    <task-card class="task-card" *ngFor="let task of taskList" [task]="task"></task-card>
+</div>

@@ -1,0 +1,15 @@
+@import './../../assets/variables';
+
+.task-list {
+    background-color: $grayF0;
+    height: 100%;
+
+    >.title {
+        margin-top: 0;
+        padding-top: 1rem;
+    }
+
+    >.task-card {
+        margin-top: 1rem;
+    }
+}
