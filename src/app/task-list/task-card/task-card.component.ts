@@ -15,4 +15,8 @@ export class TaskCardComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onStatusChange() {
+    this.task.done = !this.task.done;
+  }
+
 }
