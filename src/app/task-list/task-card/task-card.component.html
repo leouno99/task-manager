@@ -7,4 +7,8 @@
     <mat-card-actions>
         <button mat-raised-button color="primary" (click)="onStatusChange()">{{task.done ? 'Marcar como incompleta' : 'Marcar como concluída'}}</button>
     </mat-card-actions>
+
+    <button mat-icon-button (click)="onEditTask()">
+        <mat-icon>edit</mat-icon>
+    </button>
 </mat-card>

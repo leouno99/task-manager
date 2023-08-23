@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Task } from 'src/app/models/task';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
@@ -16,15 +16,19 @@ export class TaskFormDialogComponent implements OnInit {
     done: new FormControl(false)
   })
 
-  constructor(public dialogRef: MatDialogRef<TaskFormDialogComponent>) { }
+  constructor(
+    public dialogRef: MatDialogRef<TaskFormDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: Task
+  ) { }
 
   ngOnInit(): void {
+    if (this.data) {
+      this.form.setValue(this.data);
+    }
   }
 
-  onCreateTask() {
-    let newTask: Task = this.form.value;
-
-    this.dialogRef.close(newTask)
+  onSubmit() {
+    this.dialogRef.close(this.form.value);
   }
 
 }

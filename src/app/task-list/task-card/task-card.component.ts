@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Task } from 'src/app/models/task';
+import { TaskFormDialogComponent } from '../dialogs/task-form-dialog/task-form-dialog.component';
 
 @Component({
   selector: 'task-card',
@@ -10,13 +12,29 @@ export class TaskCardComponent implements OnInit {
 
   @Input() task!: Task
 
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
 
   onStatusChange() {
     this.task.done = !this.task.done;
+  }
+
+  onEditTask() {
+    let dialogRef = this.dialog.open(TaskFormDialogComponent, {
+      width: "600px",
+      autoFocus: false,
+      data: this.task
+    })
+
+    dialogRef.afterClosed().subscribe(
+      res => {
+        if (res) {
+          this.task = res;
+        }
+      }
+    )
   }
 
 }

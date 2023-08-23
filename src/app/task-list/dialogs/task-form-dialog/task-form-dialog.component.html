@@ -1,5 +1,5 @@
 <div class="task-form-dialog">
-    <h1 mat-dialog-title>Criar nova tarefa</h1>
+    <h1 mat-dialog-title>{{data ? 'Editar uma tarefa' : 'Criar nova tarefa'}}</h1>
     <div mat-dialog-content>
         <form [formGroup]="form" class="task-form">
             <mat-form-field class="example-full-width" appearance="outline">
@@ -15,6 +15,6 @@
     </div>
     <div mat-dialog-actions align="end">
         <button mat-button mat-dialog-close>Cancelar</button>
-        <button mat-button (click)="onCreateTask()" [disabled]="form.invalid">Criar</button>
+        <button mat-button (click)="onSubmit()" [disabled]="form.invalid">Confirmar</button>
     </div>
 </div>
