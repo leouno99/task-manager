@@ -8,6 +8,10 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then(m => m.LoginModule)
+  },
+  {
     path: 'task-list',
     loadChildren: () => import('./task-list/task-list.module').then(m => m.TaskListModule)
   }
