@@ -1,0 +1,10 @@
+<mat-card class="task-card">
+    <mat-card-title>{{task.name}}</mat-card-title>
+    <mat-card-content>
+        <p>{{task.description}}</p>
+    </mat-card-content>
+    <mat-divider inset></mat-divider>
+    <mat-card-actions>
+        <button mat-raised-button color="primary">{{task.done ? 'Marcar como incompleta' : 'Marcar como concluída'}}</button>
+    </mat-card-actions>
+</mat-card>
