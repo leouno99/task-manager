@@ -2,4 +2,6 @@
     <h1 class="title">Lista de Tarefas</h1>
     
     <task-card class="task-card" *ngFor="let task of taskList" [task]="task"></task-card>
+
+    <button class="create-task-btn" mat-raised-button color="primary" (click)="onAddTask()">Adicionar uma tarefa</button>
 </div>

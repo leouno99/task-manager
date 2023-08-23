@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Task } from '../models/task';
+import { MatDialog } from '@angular/material/dialog';
+import { TaskFormDialogComponent } from './dialogs/task-form-dialog/task-form-dialog.component';
 
 @Component({
   selector: 'app-task-list',
@@ -26,9 +28,21 @@ export class TaskListComponent implements OnInit {
     }
   ]
 
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
+  }
+
+  onAddTask() {
+    let dialogRef = this.dialog.open(TaskFormDialogComponent, { width: "600px", autoFocus: false });
+
+    dialogRef.afterClosed().subscribe(
+      res => {
+        if (res) {
+          this.taskList.push(res);
+        }
+      }
+    )
   }
 
 }
