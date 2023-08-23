@@ -1,7 +1,7 @@
 <div class="task-list container">
     <h1 class="title">Lista de Tarefas</h1>
     
-    <task-card class="task-card" *ngFor="let task of taskList" [task]="task"></task-card>
+    <task-card class="task-card" *ngFor="let task of taskList; let i = index" [task]="task" (deleteTask)="onDeleteTask(i)"></task-card>
 
     <button class="create-task-btn" mat-raised-button color="primary" (click)="onAddTask()">Adicionar uma tarefa</button>
 </div>

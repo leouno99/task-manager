@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Task } from 'src/app/models/task';
 import { TaskFormDialogComponent } from '../dialogs/task-form-dialog/task-form-dialog.component';
@@ -10,7 +10,8 @@ import { TaskFormDialogComponent } from '../dialogs/task-form-dialog/task-form-d
 })
 export class TaskCardComponent implements OnInit {
 
-  @Input() task!: Task
+  @Input() task!: Task;
+  @Output() deleteTask = new EventEmitter();
 
   constructor(public dialog: MatDialog) { }
 
@@ -35,6 +36,10 @@ export class TaskCardComponent implements OnInit {
         }
       }
     )
+  }
+
+  onDeleteTask() {
+    this.deleteTask.emit();
   }
 
 }

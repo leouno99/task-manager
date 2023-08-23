@@ -12,18 +12,18 @@ export class TaskListComponent implements OnInit {
 
   taskList: Task[] = [
     {
-      name: "Criar um aplicativo de gerenciamento de tarefas",
-      description: "Este portal precisará visualizar, criar, editar e apagar tarefas, assim como ter uma tela de login para acesso e criação de usuários",
+      name: "Funcionalidade de criar uma tarefa",
+      description: "Haverá a possibilidade de adicionar tarefas na lista",
       done: false
     },
     {
-      name: "Criar um aplicativo de gerenciamento de tarefas",
-      description: "Este portal precisará visualizar, criar, editar e apagar tarefas, assim como ter uma tela de login para acesso e criação de usuários",
+      name: "Funcionalidade de editar uma tarefa",
+      description: "Haverá a possibilidade de editar as tarefas existentes na lista",
       done: false
     },
     {
-      name: "Criar um aplicativo de gerenciamento de tarefas",
-      description: "Este portal precisará visualizar, criar, editar e apagar tarefas, assim como ter uma tela de login para acesso e criação de usuários",
+      name: "Funcionalidade de deletar uma tarefa",
+      description: "Haverá a possibilidade de remover uma tarefa da lista",
       done: false
     }
   ]
@@ -43,6 +43,10 @@ export class TaskListComponent implements OnInit {
         }
       }
     )
+  }
+
+  onDeleteTask(index: number) {
+    this.taskList.splice(index, 1);
   }
 
 }
