@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
+import { LoginService } from '../services/login.service';
 
 @Component({
   selector: 'app-login',
@@ -16,18 +17,25 @@ export class LoginComponent implements OnInit {
 
   hidePassword = true;
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private loginService: LoginService
+  ) { }
 
   ngOnInit(): void {
   }
 
   onSubmit() {
-    if (this.form.value.user === "leo" && this.form.value.password ==="123") {
-      this.router.navigate(["/task-list"])
-    }
-    else {
-      window.alert("Credenciais inválidas");
-    }
+    this.loginService.login(this.form.value.user, this.form.value.password).subscribe(
+      res => {
+        if (res) {
+          this.router.navigate(["/task-list"])
+        }
+        else {
+          window.alert("Credenciais inválidas");
+        }
+      }
+    )
   }
 
 }

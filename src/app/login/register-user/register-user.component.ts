@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-register-user',
@@ -10,7 +11,7 @@ import { Router } from '@angular/router';
 export class RegisterUserComponent implements OnInit {
 
   form = new FormGroup({
-    user: new FormControl("", [Validators.required]),
+    username: new FormControl("", [Validators.required]),
     password: new FormControl("", [Validators.required]),
     confirmPassword: new FormControl("", [Validators.required])
   });
@@ -18,7 +19,10 @@ export class RegisterUserComponent implements OnInit {
   hidePassword = true;
   hideConfirmPassword = true;
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private loginService: LoginService
+  ) { }
 
   ngOnInit(): void {
   }
@@ -28,7 +32,17 @@ export class RegisterUserComponent implements OnInit {
       window.alert("Valores diferentes nos campos de Senha e Confirmar senha");
     }
     else {
-      this.router.navigate(["/login"]);
+      let payload = this.form.value;
+      delete payload.confirmPassword;
+
+      this.loginService.registerUser(payload).subscribe(
+        res => {
+          if (res) {
+            window.alert("Usuário cadastrado com sucesso");
+            this.router.navigate(["/login"]);
+          }
+        }
+      )
     }
   }
 
