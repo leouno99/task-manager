@@ -37,7 +37,7 @@ export class TaskCardComponent implements OnInit {
     dialogRef.afterClosed().subscribe(
       dialogRes => {
         if (dialogRes) {
-          this.taskService.editTask(dialogRes).subscribe(
+          this.taskService.editTask(this.task.id, dialogRes).subscribe(
             res => {
               if (res) {
                 this.editTask.emit();
