@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Task } from '../models/task';
 import { MatDialog } from '@angular/material/dialog';
 import { TaskFormDialogComponent } from './dialogs/task-form-dialog/task-form-dialog.component';
+import { TaskService } from '../services/task.service';
 
 @Component({
   selector: 'app-task-list',
@@ -10,43 +11,53 @@ import { TaskFormDialogComponent } from './dialogs/task-form-dialog/task-form-di
 })
 export class TaskListComponent implements OnInit {
 
-  taskList: Task[] = [
-    {
-      name: "Funcionalidade de criar uma tarefa",
-      description: "Haverá a possibilidade de adicionar tarefas na lista",
-      done: false
-    },
-    {
-      name: "Funcionalidade de editar uma tarefa",
-      description: "Haverá a possibilidade de editar as tarefas existentes na lista",
-      done: false
-    },
-    {
-      name: "Funcionalidade de deletar uma tarefa",
-      description: "Haverá a possibilidade de remover uma tarefa da lista",
-      done: false
-    }
-  ]
+  taskList: Task[] = []
 
-  constructor(public dialog: MatDialog) { }
+  constructor(
+    public dialog: MatDialog,
+    private taskService: TaskService
+  ) { }
 
   ngOnInit(): void {
+    this.getTasks();
+  }
+
+  getTasks() {
+    this.taskService.getTasks().subscribe(
+      res => {
+        if (res) {
+          this.taskList = res;
+        }
+      }
+    )
   }
 
   onAddTask() {
     let dialogRef = this.dialog.open(TaskFormDialogComponent, { width: "600px", autoFocus: false });
 
     dialogRef.afterClosed().subscribe(
-      res => {
-        if (res) {
-          this.taskList.push(res);
+      dialogRes => {
+        if (dialogRes) {
+          this.taskService.registerTask(dialogRes).subscribe(
+            res => {
+              if (res) {
+                this.getTasks();
+              }
+            }
+          );
         }
       }
     )
   }
 
-  onDeleteTask(index: number) {
-    this.taskList.splice(index, 1);
+  onDeleteTask(id: number) {
+    this.taskService.deleteTask(id).subscribe(
+      res => {
+        if (res) {
+          this.getTasks();
+        }
+      }
+    )
   }
 
 }

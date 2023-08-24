@@ -7,7 +7,7 @@
         </a>
     </div>
     
-    <task-card class="task-card" *ngFor="let task of taskList; let i = index" [task]="task" (deleteTask)="onDeleteTask(i)"></task-card>
+    <task-card class="task-card" *ngFor="let task of taskList; let i = index" [task]="task" (editTask)="getTasks()" (deleteTask)="onDeleteTask(task.id)"></task-card>
 
     <button class="create-task-btn" mat-raised-button color="primary" (click)="onAddTask()">Adicionar uma tarefa</button>
 </div>

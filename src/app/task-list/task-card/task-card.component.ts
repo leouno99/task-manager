@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Task } from 'src/app/models/task';
 import { TaskFormDialogComponent } from '../dialogs/task-form-dialog/task-form-dialog.component';
+import { TaskService } from 'src/app/services/task.service';
 
 @Component({
   selector: 'task-card',
@@ -11,9 +12,13 @@ import { TaskFormDialogComponent } from '../dialogs/task-form-dialog/task-form-d
 export class TaskCardComponent implements OnInit {
 
   @Input() task!: Task;
+  @Output() editTask = new EventEmitter();
   @Output() deleteTask = new EventEmitter();
 
-  constructor(public dialog: MatDialog) { }
+  constructor(
+    public dialog: MatDialog,
+    private taskService: TaskService
+  ) { }
 
   ngOnInit(): void {
   }
@@ -30,9 +35,15 @@ export class TaskCardComponent implements OnInit {
     })
 
     dialogRef.afterClosed().subscribe(
-      res => {
-        if (res) {
-          this.task = res;
+      dialogRes => {
+        if (dialogRes) {
+          this.taskService.editTask(this.task.id, dialogRes).subscribe(
+            res => {
+              if (res) {
+                this.editTask.emit();
+              }
+            }
+          );
         }
       }
     )

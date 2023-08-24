@@ -11,6 +11,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class TaskFormDialogComponent implements OnInit {
 
   form = new FormGroup({
+    id: new FormControl(null),
     name: new FormControl(null, [Validators.required]),
     description: new FormControl(null, [Validators.required]),
     done: new FormControl(false)
