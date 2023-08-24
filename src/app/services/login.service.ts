@@ -9,11 +9,6 @@ export class LoginService {
 
   userList: User[] = [
     { username: "leo", password: "123" },
-    { username: "leo1", password: "123" },
-    { username: "leo2", password: "123" },
-    { username: "leo3", password: "123" },
-    { username: "leo4", password: "123" },
-    { username: "leo5", password: "123" }
   ];
 
   constructor() { }
