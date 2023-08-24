@@ -36,12 +36,12 @@ export class TaskService {
     return of(this.taskList);
   }
 
-  editTask(id: number, task: Task): Observable<boolean> {
-    let index = this.taskList.findIndex(task => {
-      return task.id === id;
+  editTask(newTask: Task): Observable<boolean> {
+    let index = this.taskList.findIndex(currentTask => {
+      return currentTask.id === newTask.id;
     });
 
-    this.taskList[index] = task;
+    this.taskList[index] = newTask;
     return of(true);
   }
 
