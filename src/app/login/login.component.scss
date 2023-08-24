@@ -1,0 +1,16 @@
+.login {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    >.card {
+        padding: 4rem;
+
+        >.form {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+}
