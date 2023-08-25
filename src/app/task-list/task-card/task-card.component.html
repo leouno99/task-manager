@@ -1,5 +1,19 @@
 <mat-card class="task-card">
-    <mat-card-title [ngClass]="{'done-text' : task.done}">{{task.name}}</mat-card-title>
+    <mat-card-title [ngClass]="{'done-text' : task.done}">
+        <div class="card-title">
+            <span>{{task.name}}</span>
+
+            <div class="card-options">
+                <button mat-icon-button (click)="onEditTask()">
+                    <mat-icon>edit</mat-icon>
+                </button>
+            
+                <button mat-icon-button (click)="onDeleteTask()">
+                    <mat-icon color="red">delete</mat-icon>
+                </button>
+            </div>
+        </div>
+    </mat-card-title>
     <mat-card-content>
         <p [ngClass]="{'done-text' : task.done}">{{task.description}}</p>
     </mat-card-content>
@@ -7,12 +21,4 @@
     <mat-card-actions>
         <button mat-raised-button color="primary" (click)="onStatusChange()">{{task.done ? 'Marcar como incompleta' : 'Marcar como concluída'}}</button>
     </mat-card-actions>
-
-    <button mat-icon-button (click)="onEditTask()">
-        <mat-icon>edit</mat-icon>
-    </button>
-
-    <button mat-icon-button (click)="onDeleteTask()">
-        <mat-icon>delete</mat-icon>
-    </button>
 </mat-card>

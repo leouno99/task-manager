@@ -1,8 +1,39 @@
+@import './../../../assets/variables';
+
 .task-card {
     margin-top: 1.5rem;
+
+    .card-title span {
+        @media (max-width: 700px) {
+            font-size: 1rem;
+        }
+    }
+
+    .card-title {
+        display: flex;
+        justify-content: space-between;
+
+        .card-options {
+            display: flex;
+            justify-content: space-between;
+            width: 10%;
+
+            @media (max-width: 700px) {
+                width: 15%;
+            }
+
+            @media (max-width: 400px) {
+                width: 30%;
+            }
+        }
+    }
 }
 
 .done-text {
-    color: green;
+    color: $defaultGreen;
     text-decoration: line-through;
+}
+
+.mat-red {
+    color: $defaultRed;
 }
