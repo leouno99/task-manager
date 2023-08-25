@@ -26,14 +26,18 @@ describe('TaskService', () => {
   it('should list all tasks', (done: DoneFn) => {
     expect(service.getTasks().subscribe(
       res => {
-        expect(Array.isArray(res)).toBeTrue();
+        expect(res).toEqual([{
+          id: 0,
+          name: "Mock task",
+          description: "This is a mock test",
+          done: false
+        }]);
         done();
       }
     ))
   });
 
   it('should create a new task', (done: DoneFn) => {
-    let currentListSize = service.taskList.length;
     let newTask: Task = {
       id: 1,
       name: "New mock task",
@@ -43,15 +47,13 @@ describe('TaskService', () => {
 
     expect(service.registerTask(newTask).subscribe(
       () => {
-        expect(service.taskList.length === currentListSize + 1).toBeTrue();
+        expect(service.taskList[1]).toEqual(newTask);
         done();
       }
     ));
   });
 
   it('should edit an existing task', (done: DoneFn) => {
-    let name = service.taskList[0].name;
-
     let newTask: Task = {
       id: 0,
       name: "Edited mock task",
@@ -61,7 +63,7 @@ describe('TaskService', () => {
 
     expect(service.editTask(0, newTask).subscribe(
       () => {
-        expect(service.taskList[0].name !== name).toBeTrue();
+        expect(service.taskList[0]).toEqual(newTask);
         done();
       }
     ));
@@ -72,7 +74,7 @@ describe('TaskService', () => {
 
     expect(service.deleteTask(0).subscribe(
       () => {
-        expect(service.taskList.length === currentListSize - 1).toBeTrue();
+        expect(service.taskList.length).toEqual(currentListSize - 1);
         done();
       }
     ));
