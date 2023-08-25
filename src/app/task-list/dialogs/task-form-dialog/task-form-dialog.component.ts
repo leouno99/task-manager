@@ -11,7 +11,6 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class TaskFormDialogComponent implements OnInit {
 
   form = new FormGroup({
-    id: new FormControl(null),
     name: new FormControl(null, [Validators.required]),
     description: new FormControl(null, [Validators.required]),
     done: new FormControl(false)
@@ -19,12 +18,13 @@ export class TaskFormDialogComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<TaskFormDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Task
+    @Inject(MAT_DIALOG_DATA) public data: Task | undefined
   ) { }
 
   ngOnInit(): void {
+    /* istanbul ignore else */
     if (this.data) {
-      this.form.setValue(this.data);
+      this.form.patchValue(this.data);
     }
   }
 
