@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from '../services/login.service';
@@ -8,7 +8,7 @@ import { LoginService } from '../services/login.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
   form = new FormGroup({
     user: new FormControl("", [Validators.required]),
@@ -21,9 +21,6 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private loginService: LoginService
   ) { }
-
-  ngOnInit(): void {
-  }
 
   onSubmit() {
     this.loginService.login(this.form.value.user, this.form.value.password).subscribe(
