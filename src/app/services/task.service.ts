@@ -10,25 +10,19 @@ export class TaskService {
   taskList: Task[] = [
     {
       id: 0,
-      name: "Funcionalidade de criar uma tarefa",
-      description: "Haverá a possibilidade de adicionar tarefas na lista",
-      done: false
+      name: "Criar aplicativo de gerenciamento de tarefas",
+      description: "Criar um aplicativo em Angular que seja capaz de listar, criar, editar e excluir tarefas",
+      done: true
     },
     {
       id: 1,
-      name: "Funcionalidade de editar uma tarefa",
-      description: "Haverá a possibilidade de editar as tarefas existentes na lista",
-      done: false
-    },
-    {
-      id: 2,
-      name: "Funcionalidade de deletar uma tarefa",
-      description: "Haverá a possibilidade de remover uma tarefa da lista",
+      name: "Fazer compras",
+      description: "Ir fazer compras no shopping",
       done: false
     }
   ]
 
-  currentId = 3;
+  currentId = 2;
 
   constructor() { }
 
