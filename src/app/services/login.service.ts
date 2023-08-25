@@ -9,7 +9,7 @@ import { delay } from 'rxjs/operators';
 export class LoginService {
 
   userList: User[] = [
-    { username: "leo", password: "123" },
+    { username: "leonardo.uno", password: "123" },
   ];
 
   constructor() { }
