@@ -19,7 +19,6 @@ export class LoginService {
   }
 
   login(username: string, password: string): Observable<boolean> {
-    console.log(this.userList);
     let result = this.userList.filter(
       user => {
         return user.username === username && user.password === password;
