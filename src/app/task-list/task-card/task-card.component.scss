@@ -17,6 +17,7 @@
             display: flex;
             justify-content: space-between;
             width: 10%;
+            color: $defaultBlack;
 
             @media (max-width: 700px) {
                 width: 15%;
