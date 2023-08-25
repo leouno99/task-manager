@@ -16,6 +16,7 @@ export class LoginComponent {
   });
 
   hidePassword = true;
+  isRequesting = false;
 
   constructor(
     private router: Router,
@@ -23,6 +24,9 @@ export class LoginComponent {
   ) { }
 
   onSubmit() {
+    this.isRequesting = true;
+    this.form.disable();
+
     this.loginService.login(this.form.value.user, this.form.value.password).subscribe(
       res => {
         if (res) {
@@ -31,6 +35,9 @@ export class LoginComponent {
         else {
           window.alert("Credenciais inválidas");
         }
+
+        this.isRequesting = false;
+        this.form.enable();
       }
     )
   }

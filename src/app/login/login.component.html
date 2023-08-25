@@ -11,13 +11,13 @@
             <mat-form-field appearance="outline">
                 <mat-label>Senha</mat-label>
                 <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password">
-                <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" type="button">
+                <button [disabled]="isRequesting" mat-icon-button matSuffix (click)="hidePassword = !hidePassword" type="button">
                     <mat-icon>{{hidePassword ? 'visibility_off' :
                         'visibility'}}</mat-icon>
                 </button>
             </mat-form-field>
 
-            <button mat-flat-button color="primary" type="submit">Efetuar login</button>
+            <button mat-flat-button color="primary" type="submit" [disabled]="isRequesting || form.invalid">Efetuar login</button>
         </form>
 
         <span class="register-text">Não possui uma conta? <a routerLink="/login/register">Cadastre-se</a></span>

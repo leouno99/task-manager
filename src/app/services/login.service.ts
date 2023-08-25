@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { User } from '../models/user';
 import { Observable, of } from 'rxjs';
+import { delay } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +26,6 @@ export class LoginService {
       }
     )
 
-    return of(result.length > 0);
+    return of(result.length > 0).pipe(delay(1000));
   }
 }
