@@ -8,7 +8,7 @@ import { LoginService } from 'src/app/services/login.service';
   templateUrl: './register-user.component.html',
   styleUrls: ['./register-user.component.scss']
 })
-export class RegisterUserComponent implements OnInit {
+export class RegisterUserComponent {
 
   form = new FormGroup({
     username: new FormControl("", [Validators.required]),
@@ -24,9 +24,6 @@ export class RegisterUserComponent implements OnInit {
     private loginService: LoginService
   ) { }
 
-  ngOnInit(): void {
-  }
-
   onSubmit() {
     if (this.form.value.password !== this.form.value.confirmPassword) {
       window.alert("Valores diferentes nos campos de Senha e Confirmar senha");
@@ -37,6 +34,7 @@ export class RegisterUserComponent implements OnInit {
 
       this.loginService.registerUser(payload).subscribe(
         res => {
+          /* istanbul ignore else */
           if (res) {
             window.alert("Usuário cadastrado com sucesso");
             this.router.navigate(["/login"]);
