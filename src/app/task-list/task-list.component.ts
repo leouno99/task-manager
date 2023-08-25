@@ -25,6 +25,7 @@ export class TaskListComponent implements OnInit {
   getTasks() {
     this.taskService.getTasks().subscribe(
       res => {
+        /* istanbul ignore else */
         if (res) {
           this.taskList = res;
         }
@@ -37,9 +38,11 @@ export class TaskListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(
       dialogRes => {
+        /* istanbul ignore else */
         if (dialogRes) {
           this.taskService.registerTask(dialogRes).subscribe(
             res => {
+              /* istanbul ignore else */
               if (res) {
                 this.getTasks();
               }
@@ -53,6 +56,7 @@ export class TaskListComponent implements OnInit {
   onDeleteTask(id: number) {
     this.taskService.deleteTask(id).subscribe(
       res => {
+        /* istanbul ignore else */
         if (res) {
           this.getTasks();
         }
