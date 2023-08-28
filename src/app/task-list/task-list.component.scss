@@ -1,0 +1,16 @@
+.task-list {
+    >.header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        
+        >.title {
+            margin-top: 0;
+            padding-top: 1rem;
+        }
+    }
+
+    >.create-task-btn {
+        margin-top: 2rem;
+    }
+}

@@ -1,0 +1,13 @@
+<div class="task-list container">
+    <div class="header">
+        <h1 class="title">Lista de Tarefas</h1>
+
+        <a mat-button routerLink="/login">
+            Sair <mat-icon>logout</mat-icon>
+        </a>
+    </div>
+    
+    <task-card class="task-card" *ngFor="let task of taskList; let i = index" [task]="task" (editTask)="getTasks()" (deleteTask)="onDeleteTask(task.id)"></task-card>
+
+    <button class="create-task-btn" mat-raised-button color="primary" (click)="onAddTask()">Adicionar uma tarefa</button>
+</div>

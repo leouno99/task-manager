@@ -1,4 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
+@import './assets/variables';
+
+html, body { height: 100%; background-color: $grayF0; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.container {
+    padding: 0 30%;
+
+    @media (max-width: 1700px) {
+        padding: 0 25%;
+    }
+    
+    @media (max-width: 1200px) {
+        padding: 0 15%;
+    }
+
+    @media (max-width: 900px) {
+        padding: 0 10%;
+    }
+
+    @media (max-width: 600px) {
+        padding: 0 5%;
+    }
+}
